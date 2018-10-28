@@ -5,6 +5,7 @@
   "homepage": "https://EkinEren.github.io/SFLCalculator/",
   "dependencies": {
     "antd": "^3.10.3",
+    "gh-pages": "^2.0.1",
     "react": "^16.6.0",
     "react-dom": "^16.6.0",
     "react-scripts": "2.0.5"
