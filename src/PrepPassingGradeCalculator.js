@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
-import { Input } from "antd";
+import { InputNumber } from "antd";
 import './PrepCalculator.css';
-import 'antd/dist/antd.css';
 
 class PrepPassingGradeCalculator extends Component {
 
@@ -13,12 +12,12 @@ class PrepPassingGradeCalculator extends Component {
         };
     }
 
-    handleGrade = (e) => {
-        this.setState({ akademikOrtalama: Number(e.target.value) });
+    handleGrade = (value) => {
+        this.setState({ akademikOrtalama: Number(value) });
     }
 
-    handleExam = (e) => {
-        this.setState({ exitNotu: Number(e.target.value) });
+    handleExam = (value) => {
+        this.setState({ exitNotu: Number(value) });
     }
 
     getResults = () => {
@@ -35,15 +34,20 @@ class PrepPassingGradeCalculator extends Component {
     }
 
     render() {
-        const { akademikOrtalama, exitNotu } = this.state
         let gecisNotu = this.getResults();
         return (
             <div className="PrepCalculator">
-                <h3>Prep Passing Grade Calculator</h3>
-                <input type="number" min="0" max="100" step="1" pattern="\d{3}" value={akademikOrtalama} onChange={this.handleGrade} />
-                <input type="number" min="0" max="100" step="1" pattern="\d{3}" value={exitNotu} onChange={this.handleExam} />
-                <p> Program Geçiş Notu : {gecisNotu}</p>
-                <p>Sonuc : {gecisNotu >= 70 ? "Fresh" : "Prep"}</p>
+                <form>
+                    <h3>Prep Passing Grade Calculator</h3>
+                    <label htmlFor="ortalama">Akademik Ortalama : </label>
+                    <InputNumber id="ortalama" min={0} max={100} maxLength={3} onChange={this.handleGrade} />
+                    <br /> <br />
+                    <label htmlFor="exitNot">Çıkış Sınav Notu : </label>
+                    <InputNumber style={{ marginLeft: "20px" }} min={0} max={100} maxLength={3} onChange={this.handleExam} />
+                    <p />
+                    <p> Program Geçiş Notu : {gecisNotu}</p>
+                    Sonuç : {gecisNotu >= 70 ? <p style={{ color: "white", backgroundColor: "green" }}>Fresh</p> : <p style={{ color: "white", backgroundColor: "orange" }}>Prep</p>}
+                </form>
             </div>
         );
 
